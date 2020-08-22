@@ -188,7 +188,7 @@ p {
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
   padding: 10px 32px;
   min-width: 200px;
 
@@ -200,11 +200,6 @@ p {
 
   border-radius: 4px;
   color: var(--main-white-color);
-  background-color: transparent;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-}
-
-.section-hero .btn {
   background-color: var(--accent-color);
   border: transparent;
   box-shadow: none;
@@ -212,6 +207,7 @@ p {
 
 .btn-portfolio {
   padding: 6px 22px;
+
   font-family: inherit;
   font-weight: 500;
   font-size: 16px;
@@ -226,6 +222,32 @@ p {
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/**.mailing-block .btn {
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent-color);
+  background-color: var(--main-white-color);
+  height: 50px;
+  box-shadow: none;
+  border: none;
+
+  transition: color, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}**/
+
+.mailing-block .btn::after {
+  content: " ";
+  background-image: url("../img/sendicon.svg");
+  background-repeat: no-repeat;
+  margin-left: 10px;
+  width: 24px;
+  height: 24px;
+}
+
+.mailing-block .btn:hover {
+  color: var(--main-white-color);
+  background-color: var(--accent-color);
 }
 
 .btn:hover,
@@ -720,41 +742,39 @@ h3 {
   margin-top: 20px;
 }
 
-.mailing-block .btn {
-  display: inline-flex;
-  align-items: center;
-  color: var(--accent-color);
-  background-color: var(--main-white-color);
-  height: 50px;
-  box-shadow: none;
-  border: none;
-
-  transition: color, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mailing-block .btn::after {
-  content: " ";
-  background-image: url("../img/sendicon.svg");
-  background-repeat: no-repeat;
-  margin-left: 10px;
-  width: 24px;
-  height: 24px;
-}
-
-.mailing-block .btn:hover {
-  color: var(--main-white-color);
-  background-color: var(--accent-color);
-}
-
-.input {
+.input-mailing-block {
   display: inline-block;
   margin-right: 12px;
+  padding-left: 17px;
   width: 358px;
   height: 50px;
+
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.6);
+
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
 }
+
+.input-mailing-block::placeholder {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+
+  color: rgba(255, 255, 255, 0.6);
+}
+/**Для плейсхолжера стилі
+font-family: Roboto;
+f
+**/
 
 .backdrop {
   position: fixed;
@@ -790,6 +810,7 @@ h3 {
   height: 581px;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   background-color: rgb(255, 255, 250);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -809,6 +830,8 @@ h3 {
 }
 
 .modal-title {
+  margin-bottom: 10px;
+
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -832,22 +855,15 @@ h3 {
   border-radius: 50%;
   border: none;
 
-  color: var(--main-text-color);
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.modal-icon {
-  fill: var(--dark-text-color);
-}
-
-.modal-link {
-  position: absolute;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.7;
-  letter-spacing: 0.03em;
-
-  color: var(--accent-color);
+.modal-button:hover,
+.modal-button:focus {
+  fill: var(--accent-color);
+  outline: none;
 }
 
 .form {
@@ -856,6 +872,8 @@ h3 {
 
 .form-field {
   position: relative;
+
+  display: flex;
   margin-top: 30px;
 
   font-style: normal;
@@ -883,13 +901,9 @@ line-height: 23px;
 text-align: center;
 letter-spacing: 0.03em;**/
 
-.label-name {
+.form-field-label {
   position: absolute;
-  top: 50%;
-  left: 42px;
-
-  transform: translateY(-50%);
-
+  transform: translateY(-150%);
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -898,7 +912,7 @@ letter-spacing: 0.03em;**/
   color: var(--main-text-color);
 }
 
-.input-name {
+.form-field-input {
   width: 100%;
   height: 40px;
   margin: 0;
@@ -914,12 +928,53 @@ letter-spacing: 0.03em;**/
   fill: var(--accent-color);
 }
 
-.form-field:focus-within .input-name {
+.form-field:focus-within .form-field-input {
   border: 1px solid var(--accent-color);
   border-radius: 4px;
   outline: none;
 }
 
-.form-agree-box {
-  position: relative;
+.form-field:focus-within .form-field-textarea {
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  outline: none;
+}
+
+.form-field-textarea {
+  width: 100%;
+  height: 96px;
+  margin: 0;
+  padding-left: 12px;
+
+  font: inherit;
+
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+
+  resize: none;
+}
+
+.form-field-agree {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-field-link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+
+  color: var(--accent-color);
+}
+
+.modal .btn {
+  justify-content: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
