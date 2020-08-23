@@ -286,8 +286,8 @@ p {
   height: 600px;
   background-color: rgba(47, 48, 58, 0.8);
   background-image: linear-gradient(
-      rgba(0, 0, 0, 0.7) 50%,
-      rgba(0, 0, 0, 0.7) 50%
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.8) 50%
     ),
     url("../img/hero.jpg");
   background-size: cover;
@@ -942,7 +942,20 @@ f
   resize: none;
 }
 
+.form-field-textarea::placeholder {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.01em;
+
+  color: rgba(117, 117, 117, 0.5);
+}
+
 .form-field-agree {
+  position: relative;
+
   display: flex;
   justify-content: start;
   align-items: center;
@@ -961,6 +974,9 @@ f
 }
 
 .checked-icon {
+  position: absolute;
+  transform: translateX(-20px);
+
   display: inline-block;
   width: 16px;
   height: 15px;
@@ -980,7 +996,7 @@ f
 .form-field-label-agree {
   display: flex;
   align-items: center;
-  padding-left: 8px;
+  padding-left: 20px;
 }
 
 .form-field-link {
